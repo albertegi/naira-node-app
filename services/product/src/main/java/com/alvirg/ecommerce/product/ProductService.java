@@ -2,6 +2,7 @@ package com.alvirg.ecommerce.product;
 
 import com.alvirg.ecommerce.product.request.ProductRequest;
 import com.alvirg.ecommerce.product.response.ProductResponse;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,9 @@ public class ProductService {
     }
 
     public ProductResponse findById(Integer productId) {
-        return null;
+        return repository.findById(productId)
+                .map(mapper::toProductResponse)
+                .orElseThrow(()-> new EntityNotFoundException("Product not found withe the ID::" + productId));
     }
 
     public List<ProductResponse> findAll() {
