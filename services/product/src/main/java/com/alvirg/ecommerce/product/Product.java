@@ -20,7 +20,7 @@ public class Product {
 
     private String name;
     private String description;
-    private Double availableQuantity;
+    private double availableQuantity;
     private BigDecimal price; // when working with money, currency, pricing, it has a lot of methods and well optimized
     @ManyToOne
     @JoinColumn(name = "category_id")
