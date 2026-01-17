@@ -71,7 +71,7 @@ public class CustomerService {
                 ));
     }
 
-    public void deleteCustomer(final String customerId) {
+    public void deleteCustomer(String customerId) {
         this.repository.deleteById(customerId);
     }
 }

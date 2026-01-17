@@ -65,7 +65,8 @@ public class CustomerController {
             @PathVariable("customer-id")
             String customerId
     ){
-        return ResponseEntity.ok(customerService.deleteById(customerId));
+        customerService.deleteCustomer(customerId);
+        return ResponseEntity.accepted().build();
     }
 
 

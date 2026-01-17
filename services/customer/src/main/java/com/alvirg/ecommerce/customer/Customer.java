@@ -3,8 +3,6 @@ package com.alvirg.ecommerce.customer;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.lang.foreign.AddressLayout;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

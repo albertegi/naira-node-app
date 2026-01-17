@@ -1,14 +1,22 @@
 package com.alvirg.ecommerce.product;
 
+import com.alvirg.ecommerce.ProductApplication;
 import com.alvirg.ecommerce.category.Category;
 import com.alvirg.ecommerce.product.request.ProductRequest;
 import com.alvirg.ecommerce.product.response.ProductResponse;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
 public class ProductMapper {
+    private final ProductApplication productApplication;
+
+    public ProductMapper(ProductApplication productApplication) {
+        this.productApplication = productApplication;
+    }
+
     public Product toProduct(ProductRequest request) {
         return Product.builder()
                 .id(request.id())
@@ -31,6 +39,16 @@ public class ProductMapper {
                 product.getCategory().getId(),
                 product.getCategory().getName(),
                 product.getCategory().getDescription()
+        );
+    }
+
+    public ProductPurchaseResponse toProductPurchaseResponse(Product product, double quantity) {
+        return new ProductPurchaseResponse(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                quantity
         );
     }
 }
