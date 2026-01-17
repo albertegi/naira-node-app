@@ -23,5 +23,4 @@ public class OrderLine {
     private String productId; // relationship with Product entity in Product domain
     private double quantity;
 
-
 }
