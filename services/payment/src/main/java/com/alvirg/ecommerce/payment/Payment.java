@@ -1,10 +1,12 @@
 package com.alvirg.ecommerce.payment;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,20 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "table")
 public class Payment {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
+    private BigDecimal amount;
+    @Enumerated(value = EnumType.STRING)
+    private PaymentMethod paymentMethod;
+    private Integer orderId;
+
+    @CreatedDate
+    @Column(updatable = false, nullable = false)
+    private LocalDateTime createAt;
+    @Column(insertable = false, nullable = true)
+    private LocalDateTime lastModifiedDate;
+
+
 }
