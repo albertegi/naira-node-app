@@ -20,7 +20,7 @@ public class OrderLine {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    private String productId; // relationship with Product entity in Product domain
+    private Integer productId; // relationship with Product entity in Product domain
     private double quantity;
 
 }
