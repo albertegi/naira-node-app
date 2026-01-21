@@ -1,4 +1,4 @@
-package com.alvirg.ecommerce.exception.handler;
+package com.alvirg.ecommerce.handler;
 
 import java.util.Map;
 

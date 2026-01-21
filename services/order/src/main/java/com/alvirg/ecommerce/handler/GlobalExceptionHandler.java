@@ -1,6 +1,6 @@
-package com.alvirg.ecommerce.exception.handler;
+package com.alvirg.ecommerce.handler;
 
-import com.alvirg.ecommerce.exception.ProductPurchaseException;
+import com.alvirg.ecommerce.exception.BusinessException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +14,8 @@ import java.util.HashMap;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ProductPurchaseException.class)
-    public ResponseEntity<String> handler(ProductPurchaseException exp){
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<String> handler(BusinessException exp){
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(exp.getMessage());
