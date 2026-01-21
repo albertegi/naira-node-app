@@ -25,5 +25,7 @@ public class NotificationProducer {
                 .build();
 
         kafkaTemplate.send(message);
+
+        // the message will be sent to the Payment Service and the payment service will send to the Notification microservice
     }
 }
