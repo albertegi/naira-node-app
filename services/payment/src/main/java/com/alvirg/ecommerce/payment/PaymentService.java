@@ -28,8 +28,8 @@ public class PaymentService {
                         request.amount(),
                         request.paymentMethod(),
                         request.customer().firstname(),
-                        request.customer().firstname(),
-                        request.customer().lastname()
+                        request.customer().lastname(),
+                        request.customer().email()
                 )
         );
         // send a notification to the Notification microservice

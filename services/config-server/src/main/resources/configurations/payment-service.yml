@@ -18,3 +18,7 @@ spring:
         spring.json.type.mapping: paymentConfirmation:com.alvirg.ecommerce.notification.PaymentNotificationRequest
   application:
     name: payment-service
+
+
+server:
+  port: 8060
