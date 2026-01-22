@@ -7,6 +7,8 @@ import com.alvirg.ecommerce.kafka.OrderProducer;
 import com.alvirg.ecommerce.order.exception.BusinessException;
 import com.alvirg.ecommerce.orderline.OrderLineRequest;
 import com.alvirg.ecommerce.orderline.OrderLineService;
+import com.alvirg.ecommerce.payment.PaymentClient;
+import com.alvirg.ecommerce.payment.PaymentRequest;
 import com.alvirg.ecommerce.product.ProductCient;
 import com.alvirg.ecommerce.product.PurchaseRequest;
 import com.alvirg.ecommerce.product.PurchaseResponse;
@@ -29,6 +31,7 @@ public class OrderService {
     private OrderLineService orderLineService;
 
     private final OrderProducer orderProducer;
+    private final PaymentClient paymentClient;
 
     public Integer createOrder(OrderRequest request) {
         // check if we have the customer or not - use (OpenFeign) first create a customer client
@@ -54,7 +57,15 @@ public class OrderService {
             );
         }
 
-        // todo start payment process
+        // start payment process
+        var paymentRequest = new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer
+        );
+        paymentClient.requestOrderPayment(paymentRequest);
         // send the order confirmation --> notification microservice(kafka)
         orderProducer.sendOrderConfirmation(
                 new OrderConfirmation(
@@ -73,7 +84,6 @@ public class OrderService {
                 .stream()
                 .map(mapper::fromOrder)
                 .toList();
-
     }
 
     public OrderResponse findById(Integer orderId) {
