@@ -2,7 +2,7 @@ package com.alvirg.ecommerce.notification;
 
 import com.alvirg.ecommerce.kafka.order.OrderConfirmation;
 import com.alvirg.ecommerce.kafka.payment.PaymentConfirmation;
-import com.alvirg.ecommerce.notification.order.OrderConfirmation;
+//import com.alvirg.ecommerce.notification.order.OrderConfirmation;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 

@@ -5,7 +5,13 @@ spring:
       password: albert
       host: localhost
       port: 27017
-      database: customer
+      database: customerdb
       authentication-database: admin
+
 server:
   port: 8090
+
+
+
+
+

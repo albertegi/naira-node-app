@@ -30,29 +30,30 @@ services:
     restart: unless-stopped
 
   mongodb:
-    container_name: ms_mongo_db
     image: mongo
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: albert
-      MONGO_INITDB_ROOT_PASSWORD: albert
+    container_name: mongo_db
     ports:
       - 27017:27017
     volumes:
       - mongo:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=albert
+      - MONGO_INITDB_ROOT_PASSWORD=albert
 
   mongo-express:
-    container_name: ms_mongo_express
-    image: mongo-express
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=albert
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=albert
-      - ME_CONFIG_MONGODB_SERVER=mongodb
-      - ME_CONFIG_BASICAUTH_USERNAME=admin
-      - ME_CONFIG_BASICAUTH_PASSWORD=admin
+      image: mongo-express
+      container_name: mongo_express
+      restart: always
+      ports:
+        - 8081:8081
+      environment:
+        - ME_CONFIG_MONGODB_ADMINUSERNAME=albert
+        - ME_CONFIG_MONGODB_ADMINPASSWORD=albert
+        - ME_CONFIG_MONGODB_SERVER=mongo_db
+        - ME_CONFIG_BASICAUTH_USERNAME=alberto
+        - ME_CONFIG_BASICAUTH_PASSWORD=alberto
 
-    ports:
-      - 8081:8081
-    restart: unless-stopped
+
 
   zookeeper:
     container_name: zookeeper
