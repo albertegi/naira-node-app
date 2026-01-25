@@ -20,7 +20,7 @@ public class PaymentService {
 
 
     public Integer createPayment(PaymentRequest request) {
-        var payment = repository.save(mapper.toPayment(request));
+        var payment = this.repository.save(mapper.toPayment(request));
 
         notificationProducer.sendNotification(
                 new PaymentNotificationRequest(
@@ -34,6 +34,6 @@ public class PaymentService {
         );
         // send a notification to the Notification microservice
 
-        return null;
+        return payment.getId();
     }
 }

@@ -15,12 +15,15 @@ public record OrderRequest(
 
         @Positive(message = "Order amount should be positive")
         BigDecimal amount,
-        @NotNull(message = "Payment method should be selected")
+
+        @NotNull(message = "Payment method should be precised")
         PaymentMethod paymentMethod,
+
         @NotNull(message = "Customer should be present")
         @NotEmpty(message = "Customer should be present")
         @NotBlank(message = "Customer should be present")
         String customerId,
+
         @NotEmpty(message = "You should purchase at least one product")
         List<PurchaseRequest> products
 ) {

@@ -19,12 +19,12 @@ public class OrderController {
             @RequestBody @Valid
             OrderRequest request
     ){
-        return ResponseEntity.ok(orderService.createOrder(request));
+        return ResponseEntity.ok(this.orderService.createOrder(request));
     }
 
     @GetMapping
     public ResponseEntity<List<OrderResponse>> findAll(){
-        return ResponseEntity.ok(orderService.findAll());
+        return ResponseEntity.ok(this.orderService.findAllOrders());
     }
 
     @GetMapping("/{order-id}")
@@ -32,7 +32,7 @@ public class OrderController {
             @PathVariable("order-id")
             Integer orderId
     ){
-        return ResponseEntity.ok(orderService.findById(orderId));
+        return ResponseEntity.ok(this.orderService.findById(orderId));
     }
 
 

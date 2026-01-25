@@ -7,6 +7,7 @@ import com.alvirg.ecommerce.product.response.ProductResponse;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -24,7 +25,9 @@ public class ProductService {
         return repository.save(product).getId();
     }
 
-    public List<ProductPurchaseResponse> purchaseProduct(List<ProductPurchaseRequest> request) {
+    @Transactional(rollbackFor = ProductPurchaseException.class)
+    public List<ProductPurchaseResponse> purchaseProduct(
+            List<ProductPurchaseRequest> request) {
         // few checks
         // check if we have all the products
         // check available quantity for the products
@@ -66,7 +69,7 @@ public class ProductService {
 
         // loop over list of products
 
-        return null;
+        return purchasedProducts;
     }
 
     public ProductResponse findById(Integer productId) {

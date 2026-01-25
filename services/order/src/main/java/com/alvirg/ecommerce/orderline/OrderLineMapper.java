@@ -10,14 +10,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OrderLineMapper {
 
-    private Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    private String productId; // relationship with Product entity in Product domain
-    private double quantity;
 
     public OrderLine toOrderLine(OrderLineRequest request) {
         return OrderLine.builder()

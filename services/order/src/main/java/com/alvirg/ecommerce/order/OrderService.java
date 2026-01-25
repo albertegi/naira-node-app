@@ -14,7 +14,6 @@ import com.alvirg.ecommerce.product.PurchaseRequest;
 import com.alvirg.ecommerce.product.PurchaseResponse;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -28,7 +27,7 @@ public class OrderService {
     private final OrderMapper mapper;
     private final CustomerClient customerClient;
     private final ProductCient productCient;
-    private OrderLineService orderLineService;
+    private final OrderLineService orderLineService;
 
     private final OrderProducer orderProducer;
     private final PaymentClient paymentClient;
@@ -39,11 +38,11 @@ public class OrderService {
                 .orElseThrow(()-> new BusinessException("Cannot create order:: No customer exists with the provided ID"));
 
         // we need to purchase the products using product microservice use (Rest template)
-        var purchasedProducts = this.productCient.purchaseProduct(request.products());
+        var purchasedProducts = productCient.purchaseProduct(request.products());
 
 
         // once we purchase the product we need to persist the order object
-        var order = this.orderRepository.save(this.mapper.toOrder(request));
+        var order = this.orderRepository.save(mapper.toOrder(request));
 
         // persis the order line
         for(PurchaseRequest purchaseRequest: request.products()){
@@ -79,18 +78,18 @@ public class OrderService {
         return order.getId();
     }
 
-    public List<OrderResponse> findAll() {
+    public List<OrderResponse> findAllOrders() {
         return orderRepository.findAll()
                 .stream()
-                .map(mapper::fromOrder)
+                .map(this.mapper::fromOrder)
                 .toList();
     }
 
-    public OrderResponse findById(Integer orderId) {
-        return orderRepository.findById(orderId)
-                .map(mapper::fromOrder)
+    public OrderResponse findById(Integer id) {
+        return orderRepository.findById(id)
+                .map(this.mapper::fromOrder)
                 .orElseThrow(()-> new EntityNotFoundException(
-                        String.format("No order found with the provided ID: %d", orderId)
+                        String.format("No order found with the provided ID: %d", id)
                 ));
     }
 }

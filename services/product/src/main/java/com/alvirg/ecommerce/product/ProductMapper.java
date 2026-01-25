@@ -11,11 +11,6 @@ import java.math.BigDecimal;
 
 @Service
 public class ProductMapper {
-    private final ProductApplication productApplication;
-
-    public ProductMapper(ProductApplication productApplication) {
-        this.productApplication = productApplication;
-    }
 
     public Product toProduct(ProductRequest request) {
         return Product.builder()

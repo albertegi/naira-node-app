@@ -5,7 +5,7 @@ spring:
       password: albert
       host: localhost
       port: 27017
-      database: customerdb
+      database: notification
       authentication-database: admin
 
   kafka:
@@ -24,17 +24,16 @@ spring:
     port: 1025
     username: albert
     password: albert
-
-
     properties:
       mail:
-        smtp: '*'
+        smtp:
+          trust: "*"
         auth: true
         starttls:
-          enabled: true
-          connectiontimeout: 5000
-          timout: 3000
-          writetimeout: 5000
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
 
 server:
   port: 8040

@@ -3,3 +3,6 @@ spring:
     import: optional:configserver:http://localhost:8888
   application:
     name: customer-service
+  data:
+    mongodb:
+      uri: mongodb://albert:albert@localhost:27017/customer?authSource=admin

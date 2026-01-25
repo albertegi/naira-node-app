@@ -16,7 +16,6 @@ public class PaymentMapper {
                 .amount(request.amount())
                 .paymentMethod(request.paymentMethod())
                 .orderId(request.orderId())
-
                 .build();
     }
 }

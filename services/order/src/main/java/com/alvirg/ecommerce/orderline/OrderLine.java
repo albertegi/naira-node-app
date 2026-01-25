@@ -10,10 +10,11 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
+@Table(name = "customer_line")
 public class OrderLine {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Integer id;
 
     @ManyToOne

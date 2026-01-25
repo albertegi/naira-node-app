@@ -1,7 +1,6 @@
 package com.alvirg.ecommerce.exception.handler;
 
 import com.alvirg.ecommerce.exception.CustomerNotFoundException;
-import org.springframework.boot.web.error.Error;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

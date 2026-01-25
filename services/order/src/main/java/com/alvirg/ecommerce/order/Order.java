@@ -4,6 +4,7 @@ import com.alvirg.ecommerce.orderline.OrderLine;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.math.BigDecimal;
@@ -23,6 +24,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     private String reference;
     private BigDecimal totalAmount;
 
@@ -37,6 +39,8 @@ public class Order {
     @CreatedDate
     @Column(updatable = false, nullable = false)
     private LocalDateTime createAt;
-    @Column(insertable = false, nullable = true)
+
+    @LastModifiedDate
+    @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
 }

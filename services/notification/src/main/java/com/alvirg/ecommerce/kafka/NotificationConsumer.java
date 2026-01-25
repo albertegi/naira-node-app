@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 @Slf4j
 public class NotificationConsumer {
     private final NotificationRepository repository;
-    private final MongoManagedTypes mongoManagedTypes;
     private final EmailService emailService;
 
     @KafkaListener(topics = "payment-topic")
@@ -29,7 +28,7 @@ public class NotificationConsumer {
         repository.save(
                 Notification.builder()
                         .type(NotificationType.PAYMENT_CONFIRMATION)
-                        .NotificationDate(LocalDateTime.now())
+                        .notificationDate(LocalDateTime.now())
                         .paymentConfirmation(paymentConfirmation)
                         .build()
         );
@@ -49,7 +48,7 @@ public class NotificationConsumer {
         repository.save(
                 Notification.builder()
                         .type(NotificationType.ORDER_CONFIRMATION)
-                        .NotificationDate(LocalDateTime.now())
+                        .notificationDate(LocalDateTime.now())
                         .orderConfirmation(orderConfirmation)
                         .build()
         );
