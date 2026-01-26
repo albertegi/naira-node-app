@@ -14,12 +14,6 @@ import java.util.HashMap;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<String> handler(BusinessException exp){
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(exp.getMessage());
-    }
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<String> handler(EntityNotFoundException exp){
@@ -43,5 +37,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(errors));
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<String> handler(BusinessException exp){
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(exp.getMessage());
     }
 }

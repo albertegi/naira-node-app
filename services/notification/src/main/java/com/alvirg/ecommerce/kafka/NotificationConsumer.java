@@ -42,7 +42,9 @@ public class NotificationConsumer {
                 paymentConfirmation.orderReference()
         );
 
-    }@KafkaListener(topics = "order-topic")
+    }
+
+    @KafkaListener(topics = "order-topic")
     public void consumeOrderConfirmationNotification(OrderConfirmation orderConfirmation) throws MessagingException {
         log.info("Consuming the message from order-topic Topic:: {}", orderConfirmation);
         repository.save(
@@ -61,7 +63,6 @@ public class NotificationConsumer {
                 orderConfirmation.totalAmount(),
                 orderConfirmation.orderReference(),
                 orderConfirmation.products());
-
     }
 
 

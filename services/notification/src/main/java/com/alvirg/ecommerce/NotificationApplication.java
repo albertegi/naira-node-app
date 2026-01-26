@@ -16,7 +16,7 @@ public class NotificationApplication {
         SpringApplication.run(NotificationApplication.class, args);
     }
 
-    @Bean
+    //@Bean
     CommandLineRunner ensureNotificationDatabase(MongoTemplate mongoTemplate) {
         return args -> {
             try {

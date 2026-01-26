@@ -1,6 +1,6 @@
 package com.alvirg.ecommerce.product;
 
-import com.alvirg.ecommerce.order.exception.BusinessException;
+import com.alvirg.ecommerce.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;

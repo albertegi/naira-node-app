@@ -2,9 +2,9 @@ package com.alvirg.ecommerce.order;
 
 import com.alvirg.ecommerce.customer.CustomerClient;
 import com.alvirg.ecommerce.customer.CustomerResponse;
+import com.alvirg.ecommerce.exception.BusinessException;
 import com.alvirg.ecommerce.kafka.OrderConfirmation;
 import com.alvirg.ecommerce.kafka.OrderProducer;
-import com.alvirg.ecommerce.order.exception.BusinessException;
 import com.alvirg.ecommerce.orderline.OrderLineRequest;
 import com.alvirg.ecommerce.orderline.OrderLineService;
 import com.alvirg.ecommerce.payment.PaymentClient;

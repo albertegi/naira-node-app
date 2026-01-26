@@ -59,7 +59,9 @@ public class EmailService {
             log.warn("WARNING - Cannot send message to {} ", destinationEmail);
         }
 
-    }@Async
+    }
+
+    @Async
     public void sendOrderConfirmationEmail(
             String destinationEmail,
             String customerName,

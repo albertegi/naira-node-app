@@ -12,19 +12,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderService orderService;
+    private final OrderService service;
 
     @PostMapping
     public ResponseEntity<Integer> createOrder(
             @RequestBody @Valid
             OrderRequest request
     ){
-        return ResponseEntity.ok(this.orderService.createOrder(request));
+        return ResponseEntity.ok(this.service.createOrder(request));
     }
 
     @GetMapping
     public ResponseEntity<List<OrderResponse>> findAll(){
-        return ResponseEntity.ok(this.orderService.findAllOrders());
+        return ResponseEntity.ok(this.service.findAllOrders());
     }
 
     @GetMapping("/{order-id}")
@@ -32,7 +32,7 @@ public class OrderController {
             @PathVariable("order-id")
             Integer orderId
     ){
-        return ResponseEntity.ok(this.orderService.findById(orderId));
+        return ResponseEntity.ok(this.service.findById(orderId));
     }
 
 
