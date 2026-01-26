@@ -51,6 +51,15 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=albert
       - ME_CONFIG_MONGODB_SERVER=mongodb
 
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+    networks:
+      - microservices-net
+
+
   zookeeper:
     container_name: zookeeper
     image: confluentinc/cp-zookeeper:7.5.0
